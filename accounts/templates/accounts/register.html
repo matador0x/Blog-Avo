@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+{% load bootstrap4 %}
+
+    <div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_1.jpg' %})">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate">
+        <span class="subheading">Welcome to StudyLab</span>
+        <h1 style="color:#ce4be8" class="mb-4">Create An Account As Instructor </h1>
+
+    </div>
+</div>
+</div>
+</div>
+
+<section class="ftco-section ftco-no-pb ftco-no-pt">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-7"></div>
+         <div class="col-md-5 order-md-last">
+          <div class="login-wrap p-4 p-md-5">
+              <h3 class="mb-4">Create An New Account </h3>
+              <form method="POST" class="signup-form" style="margin-letf">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input class="btn btn-primary submit" type="submit" value="signup">
+              </form>
+         <p class="text-center">Already Have Account? <a href="{% url 'accounts:userLogin' %}">Sign in </a></p>
+     </div>
+ </div>
+</div>
+</div>
+</section>
+
+{% endblock %}

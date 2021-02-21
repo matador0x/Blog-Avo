@@ -1,0 +1,97 @@
+{% extends 'blog/base.html' %} 
+{% load static %}
+{% block content %}
+{% load bootstrap4 %}
+
+    <!-- END nav -->
+<section
+  class="hero-wrap hero-wrap-2 degree-right"
+  style="background-image: url({% static 'images/bg_2.jpg'%})"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end">
+      <div class="col-md-9 ftco-animate pb-5 mb-5">
+        <p class="breadcrumbs">
+          <span class="mr-2"
+            ><a href="index.html">Home <i class="fa fa-chevron-right"></i></a
+          ></span>
+          <span>Blog <i class="fa fa-chevron-right"></i></span>
+        </p>
+        <h1 class="mb-3 bread">{{post_detail.title}}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+	  <section class="ftco-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ftco-animate">
+          	<p>
+              <img src="{{post_detail.image.url}}" alt="" class="img-fluid">
+            </p>
+            <h2 class="mb-3"></p>
+            <h2 class="mb-3 mt-5">{{post_detail.title}}</h2>
+            <p>{{post_detail.body|safe}}</p>
+            <p>
+              <img src="images/image_3.jpg" alt="" class="img-fluid">
+            </p>
+            <div class="tag-widget post-tag-container mb-5 mt-5">
+              <div class="tagcloud">
+              {% if request.user == user.username  %}
+                    <a href="{% url 'blog:post_delete' post_detail.id %}" class="tag-cloud-link">Delete</a>
+              {% endif %}
+              </div>
+            </div>
+            
+           
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">{{ forloop.counter }} comments</h3>
+              <ul class="comment-list">
+                      </ul>
+                  
+
+               {% for comment in comments %}
+                <li class="comment">
+                  <div class="comment-body">
+                    <h3>{{comment.name}}</h3>
+                    <p class="date">{{comment.created|date:"F j Y"}}</p>
+                    <p> {{comment.body|linebreaks}}</p>
+                  </div>
+                </li>
+              </ul>
+              {% endfor %}
+              <!-- END comment-list -->
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form method="POST" class="p-5">
+                      {% csrf_token %}
+                   {% bootstrap_form comment_form %}
+                   {% buttons %}
+                       <button class="btn btn-primary" type="submit">Apply Now</button>
+                   {% endbuttons %}
+
+                </form>
+              </div>
+            </div>
+
+          </div> <!-- .col-md-8 -->
+          <div class="col-md-4 sidebar ftco-animate">
+            <div class="sidebar-box">
+              
+            </div>
+
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->	
+
+{% endblock %}

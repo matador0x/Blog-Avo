@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %} 
+{% load static %}
+{% block content %}
+<section
+  class="hero-wrap hero-wrap-2 degree-right"
+  style="background-image: url({% static 'images/bg_2.jpg'%})"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end">
+      <div class="col-md-9 ftco-animate pb-5 mb-5">
+        <p class="breadcrumbs">
+          <span class="mr-2"
+            ><a href="index.html">Home <i class="fa fa-chevron-right"></i></a
+          ></span>
+          <span>Blog <i class="fa fa-chevron-right"></i></span>
+
+        </p>
+        <h1 class="mb-3 bread">Create New Post</h1>
+        <br>
+        {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'blog:add' %}">Create New Post</a>
+        {% endif %}
+          <br>
+            <br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      
+      {% for post in posts %}
+      <div class="col-md-3 d-flex ftco-animate">
+        <div class="blog-entry justify-content-end">
+          <div class="text">
+            <h3 class="heading mb-3">
+              <a href="{% url 'blog:post_details' post.slug %}">{{post.title}}</a>
+            </h3>
+            <a
+              href="{% url 'blog:post_details' post.slug %}"
+              class="block-20 img"
+              style="background-image: url('{{post.image.url}}' )"
+            >
+            </a>
+            <div class="meta mb-3">
+              <div><a href="#">{{post.publish|date:'M d Y'}}</a></div>
+              <div><a href="#">{{post.author}}</a></div>
+              <div>
+                <a href="#" class="meta-chat"
+                  ><span class="fa fa-comment"></span> 3</a
+                >
+              </div>
+            </div>
+            <p>
+           {{post.overview}}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+
+    </div>
+
+
+    
+    </div>
+  </div>
+  
+</section>
+{% endblock%}

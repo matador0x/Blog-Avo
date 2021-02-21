@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<section class="hero-wrap hero-wrap-2 degree-right" style="background-image: url({% static 'images/bg_2.jpg'%})"
+  data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end">
+      <div class="col-md-9 ftco-animate pb-5 mb-5">
+        <p class="breadcrumbs">
+          <span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span>
+          <span>Blog <i class="fa fa-chevron-right"></i></span>
+        </p>
+        <h1 class="mb-3 bread">Blog</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+
+      <form method="POST" class="signup-form">
+        {% csrf_token %}
+        {% for message in messages %}
+        <h3 style="color:red">{{ message }}</h3>
+        <br>
+        {% endfor %}
+        <div class="form-group">
+          <label class="label" for="username">Username</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Username" />
+        </div>
+
+        <div class="form-group">
+          <label class="label" for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+        </div>
+        <div class="form-group d-flex justify-content-end mt-4">
+          <a href="{% url 'accounts:signup' %}" style="margin-right: 9rem;">Create An Account</a>
+          <input type="submit" class="btn btn-primary submit" name="submit" value="login">
+        </div>
+      </form>
+
+
+    </div>
+
+    <div class="row mt-5 pb-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock%}

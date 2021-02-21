@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+    <!--================Blog Area =================-->
+<style>
+    form{
+        margin-top: 10rem;
+        margin-bottom: 10rem;
+        text-align: center;
+
+    }
+
+    .removing{
+        margin-left: 8px;
+    }
+
+</style>
+                <form method="POST" action="">
+                {% csrf_token %}
+                Are you sure you want to delete this post?
+                <input type="submit" value="Yes" class="btn btn-danger"/>
+                <a class="removing" href="{% url 'blog:post_list' %}">Cancel </a>
+                </form>
+    <!--================Blog Area =================-->
+
+{% endblock  %}
